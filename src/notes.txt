@@ -1,6 +1,6 @@
+<<<<<<< HEAD
 piloto 1
 piloto 2
 piloto 3
-
-adios
-me voy
+Piloto 4
+Piloto 5
