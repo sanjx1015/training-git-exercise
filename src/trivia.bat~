@@ -1,0 +1,136 @@
+@echo off
+title The Trivia game
+color Oc
+set qdone=0
+
+:Main
+echo.
+echo.
+echo ------------------------------
+echo Trivia Game
+echo --------------------------------
+echo.
+echo.
+echo ------------------
+echo Type A and press ENTER to play
+echo Type B and press ENTER to see instructions
+echo ----------------------
+set /p input=COMMAND?
+
+if %input% == a goto Q1
+if %input% == b goto instructions
+goto error
+
+:error
+echo Dingbat! Thats an invalid command.
+pause
+goto Main
+
+:instructions
+echo Type instructions here
+pause
+goto Main
+
+
+
+:Q1
+echo                                 ----------------------------------------
+echo                                        Cual es el mejor color?
+echo                                  ----------------------------------------
+echo                                a) Verde
+echo                                b) Azul
+echo                                c) Negro
+echo                                d) Rojo
+
+set /p input=ANSWER?
+if %input%==a goto score1
+if %input%==b goto wrong1
+if %input%==c goto wrong1
+if %input%==d goto wrong1
+goto error
+
+
+:score1
+set /a qdone += 1
+echo Correcto, Batman lo sabe!
+
+echo Press any button to go to the next question!
+pause
+goto Q2
+
+:wrong1
+echo Sorry, pero el mejor color es en Negro
+echo Batman decepcionado!!
+pause
+echo Pulse cualquier tecla para continuar
+goto Q2
+
+
+:Q2
+echo.
+echo.
+echo                                  ----------------------------------------
+echo                                       Quien va a ganar el Mundial?
+echo                                  ----------------------------------------
+echo                                a) Portugal
+echo                                b) Argentina
+echo                                c) Colombia
+echo                                d) Francia
+
+set /p input=ANSWER?
+if %input% == a goto score2
+if %input% == b goto wrong2
+if %input% == c goto wrong2
+if %input% == d goto wrong2
+goto error
+
+
+:score2
+set /a qdone += 1
+echo BIEN!! Critano se lo lleva
+goto Q3
+
+:wrong2
+echo Suerte! Pero esto es del Bicho
+pause
+goto Q3
+
+:Q3
+echo.
+echo.
+echo                                  ----------------------------------------
+echo                                       Mejor marca telefono
+echo                                  ----------------------------------------
+echo                                a) Apple
+echo                                b) Samsung
+echo                                c) Xiomi
+echo                                d) Honor
+echo                                 -----------------------------------------
+echo.
+
+set /p input=ANSWER?
+if %input% == a wrong3
+if %input% == b score3
+if %input% == c wrong3
+if %input% == d wrong3
+goto error
+
+:wrong3
+echo No, de fijo es Samung
+pause
+goto resultado
+
+:score3
+set /a qdone=%qdone% +1
+echo SI, samsuung es el mejor
+goto resultado
+
+
+
+:resultado
+echo Bien terminado este es el resultado:
+echo respuestas buenas %qdone% de 3
+pause
+
+
+
