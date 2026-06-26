@@ -1,0 +1,33 @@
+param($Path)
+
+# Buscar todos los archivos .txt\
+
+$txtFiles = Get-ChildItem $Path -Filter *.txt
+
+# Crear la carpeta backup
+New-Item -Path "$Path\backup" -ItemType Directory -Force
+
+# Copiar los archivos
+foreach ($file in $txtFiles)
+{
+Copy-Item $file.FullName -Destination "$Path\backup"
+}
+
+$files = Get-ChildItem $Path -Filter *.txt
+
+Write-Host ""
+Write-Host "Resumen"
+Write-Host "----------------"
+
+$files | Where-Object { $_.Extension -eq ".txt" } | ForEach-Object {
+	    Write-Host $_.Name "-" $_.Length "bytes"
+}
+
+
+Write-Host ""
+Write-Host "Cantidad de archivos: " $files.Count
+
+$total = ($files | Measure-Object Length -Sum).Sum
+Write-Host "Tamaño total:" $total "bytes"
+
+Write-Host "Organize script finished"
